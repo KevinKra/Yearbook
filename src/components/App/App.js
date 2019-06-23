@@ -20,7 +20,8 @@ class App extends Component {
   updateStudents = (student, e) => {
     e.preventDefault();
     const prevStudents = this.state.students;
-    this.setState({ students: [student, ...prevStudents] });
+    const newStudent = { ...student, id: Date.now() };
+    this.setState({ students: [newStudent, ...prevStudents] });
   };
 
   render() {
@@ -29,7 +30,10 @@ class App extends Component {
         <NavBar toggleForm={this.toggleForm} />
         <Cohort data={this.state} />
         {this.state.displayForm ? (
-          <Form updateStudents={this.updateStudents} />
+          <Form
+            updateStudents={this.updateStudents}
+            toggleForm={this.toggleForm}
+          />
         ) : null}
       </main>
     );
