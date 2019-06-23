@@ -3,18 +3,20 @@ import Cohort from "../Cohort/Cohort";
 import NavBar from "../NavBar/NavBar";
 import Form from "../Form/Form";
 import * as data from "../../data/yearbook-data.js";
-import "./App.css";
+import "./App.scss";
 
 class App extends Component {
   state = {
+    displayStaff: true,
     displayForm: false,
     staff: data.staff,
     students: data.students
   };
 
-  toggleForm = () => {
-    const toggle = this.state.displayForm;
-    this.setState({ displayForm: !toggle });
+  toggleRender = (target, e) => {
+    e.preventDefault();
+    const toggle = this.state[target];
+    this.setState({ [target]: !toggle });
   };
 
   updateStudents = (student, e) => {
@@ -31,12 +33,15 @@ class App extends Component {
   render() {
     return (
       <main className="App">
-        <NavBar toggleForm={this.toggleForm} />
+        <NavBar
+          toggleRender={this.toggleRender}
+          displayStaff={this.state.displayStaff}
+        />
         <Cohort data={this.state} />
         {this.state.displayForm ? (
           <Form
             updateStudents={this.updateStudents}
-            toggleForm={this.toggleForm}
+            toggleRender={this.toggleRender}
           />
         ) : null}
       </main>
