@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import "./Person.css";
 
-export class Person extends Component {
+class Person extends Component {
   render() {
+    const { name, photo, quote, superlative } = this.props.member;
     return (
-      <div>
-        <h3>Person Comp</h3>
-      </div>
+      <article className="Person">
+        <h3>Person</h3>
+        <h3>{name}</h3>
+        <img src={photo} alt={name} />
+        <p>{quote}</p>
+        <p>{superlative}</p>
+      </article>
     );
   }
 }
