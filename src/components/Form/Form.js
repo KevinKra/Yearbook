@@ -8,10 +8,13 @@ class Form extends Component {
     photo: ""
   };
 
-  captureInput = e => {
+  captureInput = (e, file = false) => {
     const { name, value } = e.target;
+    // file ? e.target.value.replace("C:\fakepath\", "") : null;
     this.setState({ [name]: value });
   };
+
+  captureImage = e => {};
 
   render() {
     return (
@@ -25,9 +28,9 @@ class Form extends Component {
             <input
               type="text"
               name="name"
-              autocomplete="off"
+              autoComplete="off"
               required
-              onChange={this.captureInput}
+              onChange={e => this.captureInput(e)}
             />
           </label>
           <label htmlFor="quote">
@@ -35,9 +38,9 @@ class Form extends Component {
             <input
               type="text"
               name="quote"
-              autocomplete="off"
+              autoComplete="off"
               required
-              onChange={this.captureInput}
+              onChange={e => this.captureInput(e)}
             />
           </label>
           <label htmlFor="superlative">
@@ -45,19 +48,20 @@ class Form extends Component {
             <input
               type="text"
               name="superlative"
-              autocomplete="off"
+              autoComplete="off"
               required
-              onChange={this.captureInput}
+              onChange={e => this.captureInput(e)}
             />
           </label>
           <label htmlFor="photo">
             Photo:
             <input
-              type="photo"
+              type="file"
               name="photo"
-              autocomplete="off"
+              accept="image/*"
+              autoComplete="off"
               required
-              onChange={this.captureInput}
+              onChange={e => this.captureInput(e)}
             />
           </label>
           <button>Submit</button>
