@@ -65,7 +65,9 @@ class Form extends Component {
             />
           </label>
           <button>Submit</button>
-          <button onClick={this.props.toggleForm}>Exit</button>
+          <button onClick={e => this.props.toggleRender("displayForm", e)}>
+            Exit
+          </button>
         </form>
       </div>
     );
