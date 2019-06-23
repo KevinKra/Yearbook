@@ -10,10 +10,13 @@ class NavBar extends Component {
           className="toggleBoard"
           onClick={e => this.props.toggleRender("displayStaff", e)}
         >
-          <button className="disabled" disabled={true}>
+          <button className="btn-1 disabled" disabled={true}>
             Staff
           </button>
-          <button>Students</button>
+          -<button className="btn-1">Students</button>
+          <button className="btn-2 hidden" disabled={true}>
+            <i class="fas fa-user-plus" />
+          </button>
         </form>
       );
     } else {
@@ -22,9 +25,15 @@ class NavBar extends Component {
           className="toggleBoard"
           onSubmit={e => this.props.toggleRender("displayStaff", e)}
         >
-          <button>Staff</button>
-          <button className="disabled" disabled={true}>
+          <button className="btn-1">Staff</button>-
+          <button className="btn-1 disabled" disabled={true}>
             Students
+          </button>
+          <button
+            className="btn-2"
+            onClick={e => this.props.toggleRender("displayForm", e)}
+          >
+            <i class="fas fa-user-plus" />
           </button>
         </form>
       );
@@ -32,23 +41,10 @@ class NavBar extends Component {
     return (
       <nav className="NavBar">
         <h1>Turing Yearbook</h1>
-        <div className="nav-btns">
-          {!this.props.displayStaff && (
-            <button onClick={e => this.props.toggleRender("displayForm", e)}>
-              Add a new student?
-            </button>
-          )}
-          {toggleBoard}
-        </div>
+        <div className="nav-btns">{toggleBoard}</div>
       </nav>
     );
   }
-}
-
-{
-  /* <button onClick={() => this.props.toggleRender("displayStaff")}>
-{this.props.displayStaff ? <p>Students</p> : <p>Staff</p>}
-</button> */
 }
 
 export default NavBar;
