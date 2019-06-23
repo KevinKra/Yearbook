@@ -18,7 +18,7 @@ class Form extends Component {
 
   render() {
     return (
-      <div className="Form sticky">
+      <div className="Form fixed">
         <form
           className="form-content"
           onSubmit={e => this.props.updateStudents(this.state, e)}
