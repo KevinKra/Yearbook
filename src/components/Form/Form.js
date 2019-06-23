@@ -40,7 +40,7 @@ class Form extends Component {
           <button onClick={e => this.props.updateStudents(this.state, e)}>
             Submit
           </button>
-          <button>Exit</button>
+          <button onClick={this.props.toggleForm}>Exit</button>
         </form>
       </div>
     );
