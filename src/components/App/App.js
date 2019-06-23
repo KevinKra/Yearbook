@@ -19,9 +19,13 @@ class App extends Component {
 
   updateStudents = (student, e) => {
     e.preventDefault();
+    const toggle = this.state.displayForm;
     const prevStudents = this.state.students;
     const newStudent = { ...student, id: Date.now() };
-    this.setState({ students: [newStudent, ...prevStudents] });
+    this.setState({
+      students: [newStudent, ...prevStudents],
+      displayForm: !toggle
+    });
   };
 
   render() {

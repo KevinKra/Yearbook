@@ -16,30 +16,51 @@ class Form extends Component {
   render() {
     return (
       <div className="Form sticky">
-        <form className="form-content">
+        <form
+          className="form-content"
+          onSubmit={e => this.props.updateStudents(this.state, e)}
+        >
           <label htmlFor="name">
             Name:
-            <input type="text" name="name" onChange={this.captureInput} />
+            <input
+              type="text"
+              name="name"
+              autocomplete="off"
+              required
+              onChange={this.captureInput}
+            />
           </label>
           <label htmlFor="quote">
             Quote:
-            <input type="text" name="quote" onChange={this.captureInput} />
+            <input
+              type="text"
+              name="quote"
+              autocomplete="off"
+              required
+              onChange={this.captureInput}
+            />
           </label>
           <label htmlFor="superlative">
             Superlative:
             <input
               type="text"
               name="superlative"
+              autocomplete="off"
+              required
               onChange={this.captureInput}
             />
           </label>
           <label htmlFor="photo">
             Photo:
-            <input type="photo" name="photo" onChange={this.captureInput} />
+            <input
+              type="photo"
+              name="photo"
+              autocomplete="off"
+              required
+              onChange={this.captureInput}
+            />
           </label>
-          <button onClick={e => this.props.updateStudents(this.state, e)}>
-            Submit
-          </button>
+          <button>Submit</button>
           <button onClick={this.props.toggleForm}>Exit</button>
         </form>
       </div>
