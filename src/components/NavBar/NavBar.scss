@@ -1,13 +1,23 @@
 .NavBar {
+  position: sticky;
+  top: 0;
   display: flex;
+  align-items: center;
   justify-content: space-around;
+  background-color: rgb(43, 42, 51);
+  height: 50px;
+  h1 {
+    padding: 10px;
+    margin: 0;
+    color: rgb(255, 255, 255);
+  }
 }
 
 .nav-btns {
+  color: grey;
   display: flex;
+  align-items: center;
 }
 
 .toggleBoard {
-  border: 1px solid red;
-  // width: 200px;
 }
