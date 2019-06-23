@@ -6,11 +6,14 @@ class Cohort extends Component {
   displayPeople = data => {
     return data.map(member => <Person member={member} key={member.id} />);
   };
+
   render() {
     return (
       <section className="Cohort">
-        {this.displayPeople(this.props.data.staff)}
-        {this.displayPeople(this.props.data.students)}
+        {this.props.data.displayStaff &&
+          this.displayPeople(this.props.data.staff)}
+        {!this.props.data.displayStaff &&
+          this.displayPeople(this.props.data.students)}
       </section>
     );
   }
