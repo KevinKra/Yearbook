@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import Person from "../Person/Person";
-import "./Cohort.css";
+import "./Cohort.scss";
 
 class Cohort extends Component {
+  displayPeople = data => {
+    return data.map(member => <Person member={member} key={member.id} />);
+  };
   render() {
     return (
-      <section>
-        <h1>Cohort Component</h1>
+      <section className="Cohort">
+        {this.displayPeople(this.props.data.staff)}
+        {this.displayPeople(this.props.data.students)}
       </section>
     );
   }

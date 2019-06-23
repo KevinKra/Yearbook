@@ -5,7 +5,8 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    staff: data.staff
+    staff: data.staff,
+    students: data.students
   };
 
   render() {
@@ -14,7 +15,7 @@ class App extends Component {
         <header className="App-header">
           <h1>Turing Yearbook</h1>
         </header>
-        <Cohort staff={this.state.staff} />
+        <Cohort data={this.state} />
       </div>
     );
   }
