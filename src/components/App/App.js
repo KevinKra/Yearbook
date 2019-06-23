@@ -1,22 +1,37 @@
 import React, { Component } from "react";
 import Cohort from "../Cohort/Cohort";
+import NavBar from "../NavBar/NavBar";
+import Form from "../Form/Form";
 import * as data from "../../data/yearbook-data.js";
 import "./App.css";
 
 class App extends Component {
   state = {
+    displayForm: false,
     staff: data.staff,
     students: data.students
   };
 
+  toggleForm = () => {
+    const toggle = this.state.displayForm;
+    this.setState({ displayForm: !toggle });
+  };
+
+  updateStudents = (student, e) => {
+    e.preventDefault();
+    const prevStudents = this.state.students;
+    this.setState({ students: [student, ...prevStudents] });
+  };
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1>Turing Yearbook</h1>
-        </header>
+      <main className="App">
+        <NavBar toggleForm={this.toggleForm} />
         <Cohort data={this.state} />
-      </div>
+        {this.state.displayForm ? (
+          <Form updateStudents={this.updateStudents} />
+        ) : null}
+      </main>
     );
   }
 }
