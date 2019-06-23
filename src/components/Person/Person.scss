@@ -1,0 +1,17 @@
+.Person {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid red;
+  margin: 0.5rem;
+  height: 350px;
+  width: 275px;
+  img {
+    height: 100px;
+    width: 100px;
+  }
+  p {
+  }
+}
