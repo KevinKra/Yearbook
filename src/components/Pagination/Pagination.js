@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import * as helpers from "../../utils/index";
+import "./Pagination.scss";
 
 class Pagination extends Component {
   state = {
@@ -13,11 +13,14 @@ class Pagination extends Component {
 
   renderButtons = () => {
     const length = Object.keys(this.props.pages).length;
-    console.log("length", length);
     let buttons = [];
     for (let i = 1; i < length + 1; i++) {
       buttons.push(
-        <button key={i} onClick={() => this.handleClick(i)}>
+        <button
+          className="page-buttons"
+          key={i}
+          onClick={() => this.handleClick(i)}
+        >
           {i}
         </button>
       );

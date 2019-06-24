@@ -3,7 +3,7 @@ export const paginate = target => {
   let pageNumber = 1;
   let page = [];
   const pages = {};
-  target.map((person, i, a) => {
+  target.forEach((person, i, a) => {
     counter++;
     if (counter < 9) {
       page.push(person);
@@ -16,6 +16,4 @@ export const paginate = target => {
     }
   });
   return pages;
-  // console.log(page);
-  // console.log(pages);
 };

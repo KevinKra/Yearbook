@@ -18,23 +18,21 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const pages = this.state.displayStaff
-      ? helpers.paginate(this.state.staff)
-      : helpers.paginate(this.state.students);
-    console.log("pages", pages);
+    const pages = helpers.paginate(this.state.staff);
     this.updatePage(pages["page1"], pages);
   }
 
+  componentDidUpdate() {
+    console.log("update detected");
+  }
+
   buildPages = () => {
-    console.log("hello?");
     const pages = !this.state.displayStaff
       ? helpers.paginate(this.state.staff)
       : helpers.paginate(this.state.students);
-    console.log("pages-update", pages);
     this.setState({ pages, currentPage: pages[`page1`] });
   };
 
-  //issue stems from here
   updatePage = (currentPage, pages) => {
     this.setState({ currentPage, pages });
   };
