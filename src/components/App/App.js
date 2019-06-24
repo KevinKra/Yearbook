@@ -9,17 +9,30 @@ import Pagination from "../Pagination/Pagination";
 
 class App extends Component {
   state = {
-    displayStaff: true,
+    displayStaff: false,
     displayForm: false,
     staff: data.staff,
     students: data.students,
-    pages: {}
+    currentPage: {}
   };
 
-  componentDidMount() {
-    const pages = helpers.paginate(this.state.students);
-    this.setState({ pages });
-  }
+  // componentDidMount() {
+  //   const pages = helpers.paginate(this.state.students);
+  //   this.setState({ pages });
+  // }
+
+  // componentDidUpdate() {
+  //   this.changePage();
+  // }
+
+  // changePage = num => {
+  //   const keys = Object.keys(this.state.pages);
+  //   console.log("keys", keys);
+  // };
+
+  updatePage = currentPage => {
+    this.setState({ currentPage });
+  };
 
   toggleRender = (target, e) => {
     e.preventDefault();
@@ -52,7 +65,10 @@ class App extends Component {
             toggleRender={this.toggleRender}
           />
         ) : null}
-        <Pagination length={this.state.staff.length} />
+        <Pagination
+          updatePage={this.updatePage}
+          students={this.state.students}
+        />
       </main>
     );
   }

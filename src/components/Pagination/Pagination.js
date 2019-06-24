@@ -1,8 +1,37 @@
 import React, { Component } from "react";
+import * as helpers from "../../utils/index";
 
 class Pagination extends Component {
+  state = {
+    pages: {},
+    page: 1
+  };
+
+  componentDidMount() {
+    const pages = helpers.paginate(this.props.students);
+    this.setState({ pages });
+  }
+
+  handleClick = page => {
+    this.props.updatePage(this.state.pages[page]);
+    this.setState({ page });
+  };
+
+  renderButtons = () => {
+    const length = Object.keys(this.state.pages).length;
+    let buttons = [];
+    for (let i = 1; i < length + 1; i++) {
+      buttons.push(
+        <button key={i} onClick={() => this.handleClick(i)}>
+          {i}
+        </button>
+      );
+    }
+    return buttons;
+  };
+
   render() {
-    return <div>{this.props.length / 8}</div>;
+    return <div>{this.renderButtons()}</div>;
   }
 }
 
