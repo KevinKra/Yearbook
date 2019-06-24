@@ -9,26 +9,12 @@ import Pagination from "../Pagination/Pagination";
 
 class App extends Component {
   state = {
-    displayStaff: false,
+    displayStaff: true,
     displayForm: false,
     staff: data.staff,
     students: data.students,
     currentPage: {}
   };
-
-  // componentDidMount() {
-  //   const pages = helpers.paginate(this.state.students);
-  //   this.setState({ pages });
-  // }
-
-  // componentDidUpdate() {
-  //   this.changePage();
-  // }
-
-  // changePage = num => {
-  //   const keys = Object.keys(this.state.pages);
-  //   console.log("keys", keys);
-  // };
 
   updatePage = currentPage => {
     this.setState({ currentPage });
@@ -67,7 +53,9 @@ class App extends Component {
         ) : null}
         <Pagination
           updatePage={this.updatePage}
+          displayStaff={this.state.displayStaff}
           students={this.state.students}
+          staff={this.state.staff}
         />
       </main>
     );

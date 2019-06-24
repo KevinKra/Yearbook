@@ -8,12 +8,16 @@ class Pagination extends Component {
   };
 
   componentDidMount() {
-    const pages = helpers.paginate(this.props.students);
+    const pages = this.props.displayStaff
+      ? helpers.paginate(this.props.staff)
+      : helpers.paginate(this.props.students);
+    console.log(pages);
+    this.props.updatePage(pages["page1"]);
     this.setState({ pages });
   }
 
   handleClick = page => {
-    this.props.updatePage(this.state.pages[page]);
+    this.props.updatePage(this.state.pages[`page${page}`]);
     this.setState({ page });
   };
 
