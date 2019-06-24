@@ -22,20 +22,12 @@ class App extends Component {
     this.updatePage(pages["page1"], pages);
   }
 
-  // componentDidUpdate() {
-  //   console.log("update detected");
-  // }
-
   buildPages = () => {
-    const pages = !this.state.displayStaff
-      ? helpers.paginate(this.state.staff)
-      : helpers.paginate(this.state.students);
+    const { staff, students, displayStaff } = this.state;
+    const pages = !displayStaff
+      ? helpers.paginate(staff)
+      : helpers.paginate(students);
     this.setState({ pages, currentPage: pages[`page1`] });
-  };
-
-  reRender = data => {
-    const newData = helpers.paginate(data);
-    console.log(newData);
   };
 
   updatePage = (currentPage, pages) => {
@@ -49,32 +41,33 @@ class App extends Component {
   };
 
   updateStudents = (student, e) => {
+    const { displayForm, students } = this.state;
     e.preventDefault();
-    const toggle = this.state.displayForm;
-    const prevStudents = this.state.students;
+    const toggle = displayForm;
+    const prevStudents = students;
     const newStudent = { ...student, id: Date.now() };
-    const students = [newStudent, ...prevStudents];
-    const data = helpers.paginate(students);
-    console.log("data", data);
+    const updatedStudents = [newStudent, ...prevStudents];
+    const pages = helpers.paginate(updatedStudents);
     this.setState({
-      currentPage: data["page1"],
-      pages: data,
+      currentPage: pages["page1"],
+      pages,
       students: [newStudent, ...prevStudents],
       displayForm: !toggle
     });
   };
 
   render() {
+    const { students, pages, staff, displayStaff, displayForm } = this.state;
     return (
       <main className="App">
         <NavBar
           toggleRender={this.toggleRender}
-          displayStaff={this.state.displayStaff}
+          displayStaff={displayStaff}
           updatePage={this.updatePage}
           buildPages={this.buildPages}
         />
         <Cohort data={this.state} />
-        {this.state.displayForm ? (
+        {displayForm ? (
           <Form
             reRender={this.reRender}
             updateStudents={this.updateStudents}
@@ -83,10 +76,10 @@ class App extends Component {
         ) : null}
         <Pagination
           updatePage={this.updatePage}
-          pages={this.state.pages}
-          displayStaff={this.state.displayStaff}
-          students={this.state.students}
-          staff={this.state.staff}
+          pages={pages}
+          displayStaff={displayStaff}
+          students={students}
+          staff={staff}
         />
       </main>
     );
