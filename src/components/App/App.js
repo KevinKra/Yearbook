@@ -13,11 +13,30 @@ class App extends Component {
     displayForm: false,
     staff: data.staff,
     students: data.students,
+    pages: {},
     currentPage: {}
   };
 
-  updatePage = currentPage => {
-    this.setState({ currentPage });
+  componentDidMount() {
+    const pages = this.state.displayStaff
+      ? helpers.paginate(this.state.staff)
+      : helpers.paginate(this.state.students);
+    console.log("pages", pages);
+    this.updatePage(pages["page1"], pages);
+  }
+
+  buildPages = () => {
+    console.log("hello?");
+    const pages = !this.state.displayStaff
+      ? helpers.paginate(this.state.staff)
+      : helpers.paginate(this.state.students);
+    console.log("pages-update", pages);
+    this.setState({ pages, currentPage: pages[`page1`] });
+  };
+
+  //issue stems from here
+  updatePage = (currentPage, pages) => {
+    this.setState({ currentPage, pages });
   };
 
   toggleRender = (target, e) => {
@@ -43,6 +62,8 @@ class App extends Component {
         <NavBar
           toggleRender={this.toggleRender}
           displayStaff={this.state.displayStaff}
+          updatePage={this.updatePage}
+          buildPages={this.buildPages}
         />
         <Cohort data={this.state} />
         {this.state.displayForm ? (
@@ -53,6 +74,7 @@ class App extends Component {
         ) : null}
         <Pagination
           updatePage={this.updatePage}
+          pages={this.state.pages}
           displayStaff={this.state.displayStaff}
           students={this.state.students}
           staff={this.state.staff}
