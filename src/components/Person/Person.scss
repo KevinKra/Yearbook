@@ -1,17 +1,36 @@
+@import "../../styles/variables";
+
 .Person {
-  background-color: white;
+  transition: 0.07s ease-in-out;
+  background-color: $primary;
+  box-shadow: 0 0 5px $shadow;
+  color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
-  border: 1px solid red;
+  border: 2px solid $accent;
+  border-radius: 5px;
   margin: 0.5rem;
   height: 350px;
   width: 275px;
+  .card-header {
+    height: 250px;
+    width: 80%;
+  }
+  .card-body {
+    height: 100px;
+    width: 80%;
+  }
   img {
+    border-radius: 50%;
     height: 100px;
     width: 100px;
+    border: 3px solid $white;
   }
-  p {
+  &:hover {
+    cursor: pointer;
+    background-color: $primary-hover;
+    border: 2px solid $accent-hover;
   }
 }

@@ -3,38 +3,82 @@ import Cohort from "../Cohort/Cohort";
 import NavBar from "../NavBar/NavBar";
 import Form from "../Form/Form";
 import * as data from "../../data/yearbook-data.js";
-import "./App.css";
+import * as helpers from "../../utils/index";
+import "./App.scss";
+import Pagination from "../Pagination/Pagination";
 
 class App extends Component {
   state = {
+    displayStaff: true,
     displayForm: false,
     staff: data.staff,
-    students: data.students
+    students: data.students,
+    pages: {},
+    currentPage: {}
   };
 
-  toggleForm = () => {
-    const toggle = this.state.displayForm;
-    this.setState({ displayForm: !toggle });
+  componentDidMount() {
+    const pages = this.state.displayStaff
+      ? helpers.paginate(this.state.staff)
+      : helpers.paginate(this.state.students);
+    console.log("pages", pages);
+    this.updatePage(pages["page1"], pages);
+  }
+
+  buildPages = () => {
+    console.log("hello?");
+    const pages = !this.state.displayStaff
+      ? helpers.paginate(this.state.staff)
+      : helpers.paginate(this.state.students);
+    console.log("pages-update", pages);
+    this.setState({ pages, currentPage: pages[`page1`] });
+  };
+
+  //issue stems from here
+  updatePage = (currentPage, pages) => {
+    this.setState({ currentPage, pages });
+  };
+
+  toggleRender = (target, e) => {
+    e.preventDefault();
+    const toggle = this.state[target];
+    this.setState({ [target]: !toggle });
   };
 
   updateStudents = (student, e) => {
     e.preventDefault();
+    const toggle = this.state.displayForm;
     const prevStudents = this.state.students;
     const newStudent = { ...student, id: Date.now() };
-    this.setState({ students: [newStudent, ...prevStudents] });
+    this.setState({
+      students: [newStudent, ...prevStudents],
+      displayForm: !toggle
+    });
   };
 
   render() {
     return (
       <main className="App">
-        <NavBar toggleForm={this.toggleForm} />
+        <NavBar
+          toggleRender={this.toggleRender}
+          displayStaff={this.state.displayStaff}
+          updatePage={this.updatePage}
+          buildPages={this.buildPages}
+        />
         <Cohort data={this.state} />
         {this.state.displayForm ? (
           <Form
             updateStudents={this.updateStudents}
-            toggleForm={this.toggleForm}
+            toggleRender={this.toggleRender}
           />
         ) : null}
+        <Pagination
+          updatePage={this.updatePage}
+          pages={this.state.pages}
+          displayStaff={this.state.displayStaff}
+          students={this.state.students}
+          staff={this.state.staff}
+        />
       </main>
     );
   }

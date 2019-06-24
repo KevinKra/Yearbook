@@ -6,10 +6,14 @@ class Person extends Component {
     const { name, photo, quote, superlative } = this.props.member;
     return (
       <article className="Person">
-        <h3>{name}</h3>
-        <img src={photo} alt={name} />
-        <p>{quote}</p>
-        <p>{superlative}</p>
+        <header className="card-header">
+          <h2>{name}</h2>
+          <img src={photo} alt={name} />
+          <p>{quote}</p>
+        </header>
+        <main className="card-body">
+          <p>{superlative}</p>
+        </main>
       </article>
     );
   }

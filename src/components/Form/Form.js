@@ -8,39 +8,64 @@ class Form extends Component {
     photo: ""
   };
 
-  captureInput = e => {
+  captureInput = (e, file = false) => {
     const { name, value } = e.target;
+    // file ? e.target.value.replace("C:\fakepath\", "") : null;
     this.setState({ [name]: value });
   };
 
   render() {
     return (
-      <div className="Form sticky">
-        <form className="form-content">
+      <div className="Form fixed">
+        <form
+          className="form-content"
+          onSubmit={e => this.props.updateStudents(this.state, e)}
+        >
           <label htmlFor="name">
             Name:
-            <input type="text" name="name" onChange={this.captureInput} />
+            <input
+              type="text"
+              name="name"
+              autoComplete="off"
+              required
+              onChange={e => this.captureInput(e)}
+            />
           </label>
           <label htmlFor="quote">
             Quote:
-            <input type="text" name="quote" onChange={this.captureInput} />
+            <input
+              type="text"
+              name="quote"
+              autoComplete="off"
+              required
+              onChange={e => this.captureInput(e)}
+            />
           </label>
           <label htmlFor="superlative">
             Superlative:
             <input
               type="text"
               name="superlative"
-              onChange={this.captureInput}
+              autoComplete="off"
+              required
+              onChange={e => this.captureInput(e)}
             />
           </label>
           <label htmlFor="photo">
             Photo:
-            <input type="photo" name="photo" onChange={this.captureInput} />
+            <input
+              type="file"
+              name="photo"
+              accept="image/*"
+              autoComplete="off"
+              required
+              onChange={e => this.captureInput(e)}
+            />
           </label>
-          <button onClick={e => this.props.updateStudents(this.state, e)}>
-            Submit
+          <button>Submit</button>
+          <button onClick={e => this.props.toggleRender("displayForm", e)}>
+            Exit
           </button>
-          <button onClick={this.props.toggleForm}>Exit</button>
         </form>
       </div>
     );
