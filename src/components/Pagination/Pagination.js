@@ -3,26 +3,17 @@ import * as helpers from "../../utils/index";
 
 class Pagination extends Component {
   state = {
-    pages: {},
     page: 1
   };
 
-  componentDidMount() {
-    const pages = this.props.displayStaff
-      ? helpers.paginate(this.props.staff)
-      : helpers.paginate(this.props.students);
-    console.log(pages);
-    this.props.updatePage(pages["page1"]);
-    this.setState({ pages });
-  }
-
   handleClick = page => {
-    this.props.updatePage(this.state.pages[`page${page}`]);
+    this.props.updatePage(this.props.pages[`page${page}`], this.props.pages);
     this.setState({ page });
   };
 
   renderButtons = () => {
-    const length = Object.keys(this.state.pages).length;
+    const length = Object.keys(this.props.pages).length;
+    console.log("length", length);
     let buttons = [];
     for (let i = 1; i < length + 1; i++) {
       buttons.push(
