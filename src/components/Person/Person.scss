@@ -1,10 +1,15 @@
+@import "../../styles/variables";
+
 .Person {
-  background-color: white;
+  transition: 0.07s ease-in-out;
+  background-color: $primary;
+  box-shadow: 0 0 5px $shadow;
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  border: 1px solid black;
+  border: 2px solid $accent;
   border-radius: 5px;
   margin: 0.5rem;
   height: 350px;
@@ -21,5 +26,11 @@
     border-radius: 50%;
     height: 100px;
     width: 100px;
+    border: 3px solid $white;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: $primary-hover;
+    border: 2px solid $accent-hover;
   }
 }
