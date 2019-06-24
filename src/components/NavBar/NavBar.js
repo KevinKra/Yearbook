@@ -15,7 +15,7 @@ class NavBar extends Component {
           </button>
           -<button className="btn-1">Students</button>
           <button className="btn-2 hidden" disabled={true}>
-            <i class="fas fa-user-plus" />
+            <i className="fas fa-user-plus" />
           </button>
         </form>
       );
@@ -33,14 +33,17 @@ class NavBar extends Component {
             className="btn-2"
             onClick={e => this.props.toggleRender("displayForm", e)}
           >
-            <i class="fas fa-user-plus" />
+            <i className="fas fa-user-plus" />
           </button>
         </form>
       );
     }
     return (
       <nav className="NavBar">
-        <h1>Turing Yearbook</h1>
+        <div className="title">
+          <i className="fas fa-brain" />
+          <h1>Turing Yearbook</h1>
+        </div>
         <div className="nav-btns">{toggleBoard}</div>
       </nav>
     );
