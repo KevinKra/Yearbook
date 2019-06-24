@@ -5,12 +5,11 @@ class Form extends Component {
     name: "",
     quote: "",
     superlative: "",
-    photo: ""
+    photo: "https://placekitten.com/200/300"
   };
 
-  captureInput = (e, file = false) => {
+  captureInput = e => {
     const { name, value } = e.target;
-    // file ? e.target.value.replace("C:\fakepath\", "") : null;
     this.setState({ [name]: value });
   };
 
@@ -51,7 +50,7 @@ class Form extends Component {
               onChange={e => this.captureInput(e)}
             />
           </label>
-          <label htmlFor="photo">
+          {/* <label htmlFor="photo">
             Photo:
             <input
               type="file"
@@ -61,7 +60,7 @@ class Form extends Component {
               required
               onChange={e => this.captureInput(e)}
             />
-          </label>
+          </label> */}
           <button>Submit</button>
           <button onClick={e => this.props.toggleRender("displayForm", e)}>
             Exit
