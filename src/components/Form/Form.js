@@ -14,8 +14,6 @@ class Form extends Component {
     this.setState({ [name]: value });
   };
 
-  captureImage = e => {};
-
   render() {
     return (
       <div className="Form fixed">
