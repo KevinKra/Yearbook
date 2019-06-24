@@ -22,15 +22,20 @@ class App extends Component {
     this.updatePage(pages["page1"], pages);
   }
 
-  componentDidUpdate() {
-    console.log("update detected");
-  }
+  // componentDidUpdate() {
+  //   console.log("update detected");
+  // }
 
   buildPages = () => {
     const pages = !this.state.displayStaff
       ? helpers.paginate(this.state.staff)
       : helpers.paginate(this.state.students);
     this.setState({ pages, currentPage: pages[`page1`] });
+  };
+
+  reRender = data => {
+    const newData = helpers.paginate(data);
+    console.log(newData);
   };
 
   updatePage = (currentPage, pages) => {
@@ -48,7 +53,12 @@ class App extends Component {
     const toggle = this.state.displayForm;
     const prevStudents = this.state.students;
     const newStudent = { ...student, id: Date.now() };
+    const students = [newStudent, ...prevStudents];
+    const data = helpers.paginate(students);
+    console.log("data", data);
     this.setState({
+      currentPage: data["page1"],
+      pages: data,
       students: [newStudent, ...prevStudents],
       displayForm: !toggle
     });
@@ -66,6 +76,7 @@ class App extends Component {
         <Cohort data={this.state} />
         {this.state.displayForm ? (
           <Form
+            reRender={this.reRender}
             updateStudents={this.updateStudents}
             toggleRender={this.toggleRender}
           />
