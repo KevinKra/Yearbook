@@ -3,15 +3,23 @@ import Cohort from "../Cohort/Cohort";
 import NavBar from "../NavBar/NavBar";
 import Form from "../Form/Form";
 import * as data from "../../data/yearbook-data.js";
+import * as helpers from "../../utils/index";
 import "./App.scss";
+import Pagination from "../Pagination/Pagination";
 
 class App extends Component {
   state = {
     displayStaff: true,
     displayForm: false,
     staff: data.staff,
-    students: data.students
+    students: data.students,
+    pages: {}
   };
+
+  componentDidMount() {
+    const pages = helpers.paginate(this.state.students);
+    this.setState({ pages });
+  }
 
   toggleRender = (target, e) => {
     e.preventDefault();
@@ -44,6 +52,7 @@ class App extends Component {
             toggleRender={this.toggleRender}
           />
         ) : null}
+        <Pagination length={this.state.staff.length} />
       </main>
     );
   }
