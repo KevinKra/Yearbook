@@ -8,12 +8,15 @@ class NavBar extends Component {
       toggleBoard = (
         <form
           className="toggleBoard"
-          onClick={e => this.props.toggleRender("displayStaff", e)}
+          onSubmit={e => this.props.toggleRender("displayStaff", e)}
         >
           <button className="btn-1 disabled" disabled={true}>
             Staff
           </button>
-          -<button className="btn-1">Students</button>
+          -
+          <button className="btn-1" onClick={this.props.buildPages}>
+            Students
+          </button>
           <button className="btn-2 hidden" disabled={true}>
             <i className="fas fa-user-plus" />
           </button>
@@ -25,7 +28,10 @@ class NavBar extends Component {
           className="toggleBoard"
           onSubmit={e => this.props.toggleRender("displayStaff", e)}
         >
-          <button className="btn-1">Staff</button>-
+          <button className="btn-1" onClick={this.props.buildPages}>
+            Staff
+          </button>
+          -
           <button className="btn-1 disabled" disabled={true}>
             Students
           </button>
