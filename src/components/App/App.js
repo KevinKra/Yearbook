@@ -3,7 +3,7 @@ import Cohort from "../Cohort/Cohort";
 import NavBar from "../NavBar/NavBar";
 import Form from "../Form/Form";
 import * as data from "../../data/yearbook-data.js";
-import * as helpers from "../../utils/index";
+import * as helpers from "../../utils/";
 import "./App.scss";
 import Pagination from "../Pagination/Pagination";
 
