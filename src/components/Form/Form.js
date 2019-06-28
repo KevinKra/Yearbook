@@ -22,8 +22,9 @@ class Form extends Component {
           className="form-content"
           onSubmit={e => updateStudents(this.state, e)}
         >
+          <h3>Add a New Student</h3>
           <label htmlFor="name">
-            Name:
+            Name
             <input
               type="text"
               name="name"
@@ -34,29 +35,34 @@ class Form extends Component {
             />
           </label>
           <label htmlFor="quote">
-            Quote:
+            Quote
             <input
               type="text"
               name="quote"
               autoComplete="off"
               value={quote}
-              required
               onChange={e => this.captureInput(e)}
             />
           </label>
           <label htmlFor="superlative">
-            Superlative:
+            Superlative
             <input
               type="text"
               name="superlative"
               autoComplete="off"
               value={superlative}
-              required
               onChange={e => this.captureInput(e)}
             />
           </label>
-          <button>Submit</button>
-          <button onClick={e => toggleRender("displayForm", e)}>Exit</button>
+          <div className="btn-container">
+            <button>Submit</button>
+            <button
+              className="exit-btn"
+              onClick={e => toggleRender("displayForm", e)}
+            >
+              Exit
+            </button>
+          </div>
         </form>
       </div>
     );
