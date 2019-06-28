@@ -14,57 +14,55 @@ class Form extends Component {
   };
 
   render() {
+    const { name, quote, superlative } = this.state;
+    const { updateStudents, toggleRender } = this.props;
     return (
       <div className="Form fixed">
         <form
           className="form-content"
-          onSubmit={e => this.props.updateStudents(this.state, e)}
+          onSubmit={e => updateStudents(this.state, e)}
         >
+          <h3>Add a New Student</h3>
           <label htmlFor="name">
-            Name:
+            Name
             <input
               type="text"
               name="name"
               autoComplete="off"
+              value={name}
               required
               onChange={e => this.captureInput(e)}
             />
           </label>
           <label htmlFor="quote">
-            Quote:
+            Quote
             <input
               type="text"
               name="quote"
               autoComplete="off"
-              required
+              value={quote}
               onChange={e => this.captureInput(e)}
             />
           </label>
           <label htmlFor="superlative">
-            Superlative:
+            Superlative
             <input
               type="text"
               name="superlative"
               autoComplete="off"
-              required
+              value={superlative}
               onChange={e => this.captureInput(e)}
             />
           </label>
-          {/* <label htmlFor="photo">
-            Photo:
-            <input
-              type="file"
-              name="photo"
-              accept="image/*"
-              autoComplete="off"
-              required
-              onChange={e => this.captureInput(e)}
-            />
-          </label> */}
-          <button>Submit</button>
-          <button onClick={e => this.props.toggleRender("displayForm", e)}>
-            Exit
-          </button>
+          <div className="btn-container">
+            <button>Submit</button>
+            <button
+              className="exit-btn"
+              onClick={e => toggleRender("displayForm", e)}
+            >
+              Exit
+            </button>
+          </div>
         </form>
       </div>
     );
