@@ -49,7 +49,7 @@ const NavBar = props => {
         <i className="fas fa-brain" />
         <h1>Turing Yearbook</h1>
       </div>
-      <div className="nav-btns">{toggleBoard}</div>
+      <form className="nav-btns">{toggleBoard}</form>
     </nav>
   );
 };
