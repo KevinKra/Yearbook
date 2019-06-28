@@ -29,7 +29,7 @@ class Pagination extends Component {
   };
 
   render() {
-    return <div>{this.renderButtons()}</div>;
+    return <section>{this.renderButtons()}</section>;
   }
 }
 
