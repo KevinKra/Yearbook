@@ -5,9 +5,9 @@ import "./Cohort.scss";
 const Cohort = props => {
   return (
     <section className="Cohort">
-      {props.data.displayStaff && helpers.displayPeople(props.data.currentPage)}
-      {!props.data.displayStaff &&
-        helpers.displayPeople(props.data.currentPage)}
+      {props.data.displayStaff || !props.data.displayStaff
+        ? helpers.displayPeople(props.data.currentPage)
+        : null}
     </section>
   );
 };
