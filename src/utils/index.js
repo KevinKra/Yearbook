@@ -1,3 +1,6 @@
+import React from "react";
+import Person from "../components/Person/Person";
+
 export const paginate = target => {
   let counter = 0;
   let pageNumber = 1;
@@ -16,4 +19,9 @@ export const paginate = target => {
     }
   });
   return pages;
+};
+
+export const displayPeople = data => {
+  const keys = Object.keys(data);
+  return keys.map(key => <Person member={data[key]} key={data[key].id} />);
 };
